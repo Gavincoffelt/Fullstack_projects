@@ -1,0 +1,85 @@
+``` mermaid
+sequenceDiagram 
+    box exercise 0.4 new note diagram
+    participant browser
+    participant server
+    end
+
+    note right of browser: Save button clicked
+    browser ->> server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate server
+    server -->> browser: HTTP Status code 302 URL Redirect
+    note left of server: Server accesses body of POST <br/> Server creates new note obj, adds it to array 'notes'
+    deactivate server
+        browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    activate server
+    server-->>browser: HTML document
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: the css file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser: the JavaScript file
+    deactivate server
+
+    Note right of browser: The browser starts executing the JavaScript code that fetches the JSON from the server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
+    deactivate server
+
+    Note right of browser: The browser executes the callback function that renders the notes
+
+
+```
+
+``` mermaid
+sequenceDiagram 
+    box exercise 0.5 single page diagram
+    participant browser
+    participant server
+    end
+    browser ->> server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate server
+    server -->> browser: The HTML document.
+    deactivate server
+        browser ->> server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server -->> browser: The CSS file.
+    deactivate server
+        browser ->> server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate server
+    server -->> browser: The different javascript file.
+    deactivate server
+        browser ->> server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server -->> browser: The data containing the notes.
+    deactivate server
+
+```
+
+``` mermaid
+sequenceDiagram 
+    box exercise 0.6 single page new note diagram
+    participant browser
+    participant server
+    end
+    note right of browser: The save button is clicked
+    browser ->> server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+    activate browser
+    note right of browser: The website uses the new javascript pulled from the server <br/> and the event handler creates a new note, add its to the note list <br/> and then rerenders the notes page and sends the new note to the browser
+    deactivate browser
+    note right of browser: JSON data containing the note content and date <br/> are sent with the POST
+    activate server
+
+        server -->> browser: Status 201 created.
+    deactivate server
+
+
+```
