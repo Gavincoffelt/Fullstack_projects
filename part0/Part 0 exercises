@@ -1,5 +1,5 @@
-``` mermaid
-sequenceDiagram 
+```mermaid
+sequenceDiagram
     box exercise 0.4 new note diagram
     participant browser
     participant server
@@ -38,8 +38,8 @@ sequenceDiagram
 
 ```
 
-``` mermaid
-sequenceDiagram 
+```mermaid
+sequenceDiagram
     box exercise 0.5 single page diagram
     participant browser
     participant server
@@ -63,8 +63,8 @@ sequenceDiagram
 
 ```
 
-``` mermaid
-sequenceDiagram 
+```mermaid
+sequenceDiagram
     box exercise 0.6 single page new note diagram
     participant browser
     participant server
